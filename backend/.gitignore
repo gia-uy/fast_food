@@ -1,0 +1,10 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log
+.DS_Store
+
+# Environment files
+.env
+
+# Logs
+*.log
