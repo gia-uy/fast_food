@@ -133,15 +133,23 @@ Dưới đây là danh sách các bảng chính trong cơ sở dữ liệu:
 
 ## 3. Mối quan hệ giữa các thực thể
 
-| Mối quan hệ                 | Kiểu  | Mô tả                                              |
-| --------------------------- | ----- | -------------------------------------------------- |
-| `offices` – `employees`     | 1 → N | Một văn phòng có nhiều nhân viên                   |
-| `employees` – `customers`   | 1 → N | Một nhân viên phụ trách nhiều khách hàng           |
-| `productlines` – `products` | 1 → N | Một dòng sản phẩm có nhiều sản phẩm                |
-| `customers` – `orders`      | 1 → N | Một khách hàng có nhiều đơn hàng                   |
-| `orders` – `orderdetails`   | 1 → N | Một đơn hàng có nhiều chi tiết                     |
-| `products` – `orderdetails` | 1 → N | Một sản phẩm có thể xuất hiện trong nhiều đơn hàng |
-| `customers` – `payments`    | 1 → N | Một khách hàng có thể thực hiện nhiều thanh toán   |
+| Quan hệ                               | Kiểu                | Giải thích                                                                                                              |
+| ------------------------------------- | ------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| **productlines → products**           | 1–N Optional        | Một dòng sản phẩm có thể có nhiều sản phẩm, nhưng cũng có thể chưa có sản phẩm nào.                                     |
+| **offices → employees**               | 1–N Optional        | Một văn phòng có thể có nhiều nhân viên, nhưng cũng có thể chưa có nhân viên nào được gán.                              |
+| **employees → employees (reportsTo)** | 1–N Optional (self) | Một nhân viên có thể báo cáo cho người quản lý khác; có thể có hoặc không (ví dụ: quản lý cấp cao không cần reportsTo). |
+| **employees → customers**             | 1–N Optional        | Một nhân viên có thể phụ trách nhiều khách hàng, nhưng khách hàng cũng có thể chưa được gán cho nhân viên cụ thể nào.   |
+| **customers → orders**                | 1–N Optional        | Một khách hàng có thể đặt nhiều đơn hàng, nhưng cũng có thể chưa có đơn hàng nào.                                       |
+| **orders → orderdetails**             | 1–N Mandatory       | Mỗi đơn hàng phải có ít nhất một chi tiết sản phẩm (bắt buộc).                                                          |
+| **products → orderdetails**           | 1–N Mandatory       | Mỗi sản phẩm có thể nằm trong nhiều chi tiết đơn hàng, nhưng sản phẩm phải thuộc ít nhất một đơn hàng nếu đã bán ra.    |
+| **customers → payments**              | 1–N Optional        | Một khách hàng có thể thực hiện nhiều thanh toán, nhưng cũng có thể chưa phát sinh giao dịch nào.                       |
+
+---
+
+### 🔍 Tổng kết logic mối quan hệ:
+
+* **1–N Optional (◦──<)**: Quan hệ có thể tồn tại hoặc không (phía “1” có thể chưa có bản ghi liên kết).
+* **1–N Mandatory (●──<)**: Quan hệ bắt buộc; bản ghi phía “1” phải có ít nhất một bản ghi liên kết ở phía “N”.
 
 ---
 
