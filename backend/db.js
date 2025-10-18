@@ -3,8 +3,8 @@ const mysql = require("mysql2");
 
 const db = mysql.createConnection({
   host: "localhost",        // máy chủ MySQL local
-  user: "root",             // tài khoản mặc định của XAMPP
-  password: "Lethibaodiep0501@",             // XAMPP mặc định KHÔNG có mật khẩu (để trống)
+  user: "root",             // gõ tên user của bạn
+  password: "",             // gõ mật khẩu của bạn nếu có
   database: "fastfood_store" // tên database bạn import từ file .sql
 });
 
